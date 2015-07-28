@@ -24,13 +24,8 @@ $ shotgun app.rb
 No idea how to run this on a server... anybody want to help?
 
 ## Development
-Compile your CoffeeScripts:
-flags: -w watch -b bare (don't wrap in a top-level function)
-
-```bash
-$ coffee -wbc  views/*.coffee -o public
-```
-
+Edit the application.coffee (in the Views folder) it will automagically get compiled and served.
+To enable live reload, just uncomment the "live.js" include in the index.slim page.
 
 ## Thanks!
 - [LibRSVG](https://wiki.gnome.org/Projects/LibRsvg)
