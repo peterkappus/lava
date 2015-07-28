@@ -1,3 +1,8 @@
+
+## App specific ignores
+works/*.jpg
+works/*.svg
+
 *.gem
 *.rbc
 /.config
