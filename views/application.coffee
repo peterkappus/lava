@@ -1,11 +1,17 @@
 # alert "okay"
 
-#use the smaller of the two dimensions so the whole thing fits on the screen.
-#but always square
-if(window.innerHeight > window.innerWidth) #phonez
+###
+#use the smaller of the two dimensions so the whole thing fits on the screen. But always square
+#if(window.innerHeight > window.innerWidth) #phonez
   width = height = window.innerWidth
 else #desktop
   width = height = window.innerHeight
+###
+
+#nah, use native dimensions for my pretty landscape
+width = window.innerWidth;
+height = window.innerHeight;
+
 
 #use native dimensions
 #width = window.innerWidth
@@ -15,7 +21,8 @@ else #desktop
 d = SVG("svg").size(width,height)
 
 #width = window.innerWidth
-background_color = foreground_color = ""
+background_color = "#fff"
+foreground_color = ""
 min_count = 3
 max_count = 10
 max_thickness = width/32
@@ -23,7 +30,7 @@ max_thickness = width/32
 old_title = document.title
 
 rando = (min,max) ->
-  return Math.floor(Math.random() * (max - min) + min)
+  return Math.random() * (max - min) + min
 
 save_svg = () ->
   #$.post('/save_svg',{data: $('#svg').html()})
@@ -49,7 +56,8 @@ $('body').keypress (event) ->
 $('body').mousedown (event) ->
       save_svg()
 
-draw = () ->
+#draw a random gridish thing
+drawLines = () ->
   #switch our title back in case we saved the last one...
   document.title = old_title
 
@@ -64,22 +72,73 @@ draw = () ->
   background_color = randColor();
 
 
-
-  #clear the screen
-  d.rect(width,height).fill(background_color)
+  background()
 
   for num in [0..rando(min_count,max_count)]
     thickness = rando(1,max_thickness)
     #thickness = rando(1,3)
     maxcols = 2 * rando(2,6)
     foreground_color = randColor()
+    #make our lines fall somewhat on a grid
     vline((width * rando(1,maxcols)/maxcols)-(thickness/2),thickness)
     foreground_color = randColor()
     hline((height * rando(1,maxcols)/maxcols)-(thickness/2),thickness)
 
+sun = () ->
+  rad = width/3
+  x = width/2 + rando(-width/3,width/3)
+  y = height/2 + rando(-rad/2,rad/2)
+
+  #concentric rings
+  ###
+  while(rad > 1)
+    d.circle(rad).cx(x).cy(y).fill({opacity: 0}).stroke({color: "#f30", width: rad/100})
+    rad *= 0.97
+  ###
+
+  #opaque disks
+  while(rad > 1)
+    d.circle(rad).cx(x).cy(y).fill({opacity: 0.2, color: "#f30"})
+    rad *= 0.8
+
+background = () ->
+  #clear the screen
+  d.rect(width,height).fill(background_color)
+
+
+mountains = () ->
+  x = 0
+  y = height
+  dy_crazy = 1.5 #bigger is crazier
+  stroke_width = Math.floor(width/300)
+  dx = stroke_width
+
+  while y > height/4 && stroke_width > 0.005
+    while(x < width)
+      y = y+rando(-width*dy_crazy/300,width*dy_crazy/300)
+
+      #stay on canvas
+      if (y > height)
+        y = height
+		  #if (y < 0) y = 0
+
+      d.line(x,height,x,y).stroke({width: stroke_width, color: "#000", linecap: "round" })
+      x += dx
+    #reset x on the left side
+    x = 0
+    #move up...
+    y -= width/20+Math.random(width/10)
+    #get skinnier
+    stroke_width = stroke_width*0.9
+
+
 
 #do it!
-draw()
+#drawLines()
+background()
+mountains()
+sun()
+
 
 #now do it every 5 seconds...
 setInterval draw, 5000

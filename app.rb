@@ -43,5 +43,6 @@ get_or_post '/save_svg' do
 		#rsvg = system('which rsvg-convert')
 		#{}`#{rsvg} blah blah`
 	#not sure why
-	`rsvg-convert #{FOLDER}/#{file_name}.svg -o #{FOLDER}/#{file_name}.jpg`
+  #set width (-w) to 10,000px for printable image :)
+	`rsvg-convert #{FOLDER}/#{file_name}.svg -w 10000 -o #{FOLDER}/#{file_name}.jpg`
 end
