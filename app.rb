@@ -44,5 +44,5 @@ get_or_post '/save_svg' do
 		#{}`#{rsvg} blah blah`
 	#not sure why
   #set width (-w) to 10,000px for printable image :)
-	`rsvg-convert #{FOLDER}/#{file_name}.svg -w 10000 -o #{FOLDER}/#{file_name}.jpg`
+	`rsvg-convert #{FOLDER}/#{file_name}.svg -w 1200 -o #{FOLDER}/#{file_name}.jpg`
 end

@@ -1,8 +1,7 @@
 # alert "okay"
-
 ###
 #use the smaller of the two dimensions so the whole thing fits on the screen. But always square
-#if(window.innerHeight > window.innerWidth) #phonez
+if(window.innerHeight > window.innerWidth) #phonez
   width = height = window.innerWidth
 else #desktop
   width = height = window.innerHeight
@@ -21,7 +20,7 @@ height = window.innerHeight;
 d = SVG("svg").size(width,height)
 
 #width = window.innerWidth
-background_color = "#fff"
+background_color = "#eef"
 foreground_color = ""
 min_count = 3
 max_count = 10
@@ -84,22 +83,22 @@ drawLines = () ->
     foreground_color = randColor()
     hline((height * rando(1,maxcols)/maxcols)-(thickness/2),thickness)
 
-sun = () ->
-  rad = width/3
+sun = (y) ->
+  rad = rando(width/8,width/3)
+  steps = rando(3,12)
   x = width/2 + rando(-width/3,width/3)
-  y = height/2 + rando(-rad/2,rad/2)
-
-  #concentric rings
-  ###
-  while(rad > 1)
-    d.circle(rad).cx(x).cy(y).fill({opacity: 0}).stroke({color: "#f30", width: rad/100})
-    rad *= 0.97
-  ###
-
-  #opaque disks
-  while(rad > 1)
-    d.circle(rad).cx(x).cy(y).fill({opacity: 0.2, color: "#f30"})
-    rad *= 0.8
+  #y = height/2 + rando(-rad/2,rad/2)
+  y -= rad - rando(0,width/4)
+  if(Math.random() > 0.5)
+    #concentric rings
+    while(rad > 1)
+      d.circle(rad).cx(x).cy(y).fill({opacity: 0}).stroke({color: "#f30", width: rad/80})
+      rad *= 0.97
+  else
+    #opaque disks
+    while(rad > 1)
+      d.circle(rad).cx(x).cy(y).fill({opacity: 1/steps, color: "#f30"})
+      rad *= 1-(1/steps)
 
 background = () ->
   #clear the screen
@@ -109,8 +108,10 @@ background = () ->
 mountains = () ->
   x = 0
   y = height
-  dy_crazy = 1.5 #bigger is crazier
-  stroke_width = Math.floor(width/300)
+  dy_crazy = rando(0.5,3) #bigger is crazier
+  stroke_width = Math.floor(width/rando(50,1200))
+  if(stroke_width < 1)
+    stroke_width = 1
   dx = stroke_width
 
   while y > height/4 && stroke_width > 0.005
@@ -127,18 +128,21 @@ mountains = () ->
     #reset x on the left side
     x = 0
     #move up...
-    y -= width/20+Math.random(width/10)
+    #y -= width/40+Math.random(width/30)
+    y -= rando(height/10,height/5)
+
     #get skinnier
-    stroke_width = stroke_width*0.9
+    stroke_width = stroke_width*0.85
+  return(y)
 
 
 
 #do it!
 #drawLines()
 background()
-mountains()
-sun()
+last_y = mountains()
+sun(last_y)
 
 
 #now do it every 5 seconds...
-setInterval draw, 5000
+#setInterval draw, 5000
