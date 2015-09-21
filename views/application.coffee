@@ -20,10 +20,10 @@ height = window.innerHeight;
 d = SVG("svg").size(width,height)
 
 #width = window.innerWidth
-background_color = "#eef"
+background_color = "#eee"
 foreground_color = ""
 min_count = 3
-max_count = 10
+max_count = 8
 max_thickness = width/32
 
 old_title = document.title
@@ -76,23 +76,31 @@ drawLines = () ->
   for num in [0..rando(min_count,max_count)]
     thickness = rando(1,max_thickness)
     #thickness = rando(1,3)
-    maxcols = 2 * rando(2,6)
-    foreground_color = randColor()
+    maxcols = 2 * rando(2,8)
+    #foreground_color = randColor()
     #make our lines fall somewhat on a grid
     vline((width * rando(1,maxcols)/maxcols)-(thickness/2),thickness)
-    foreground_color = randColor()
+    #foreground_color = randColor()
     hline((height * rando(1,maxcols)/maxcols)-(thickness/2),thickness)
 
+#pass an approximate Y where you'd like the sun
 sun = (y) ->
-  rad = rando(width/8,width/3)
+  #rad = rando(width/8,width/3)
+  rad = rando(y/3,y*2) #make radius fit the distance from y to the top
   steps = rando(3,12)
-  x = width/2 + rando(-width/3,width/3)
+  x = rando(rad+width/10,width-(rad+width/10))
   #y = height/2 + rando(-rad/2,rad/2)
-  y -= rad - rando(0,width/4)
+  #y -= rad - rando(0,width/4)
+
+  #keep it totally on the page
+  y = rad + rando(0,y-rad)
+
+  #coin flip
   if(Math.random() > 0.5)
     #concentric rings
     while(rad > 1)
-      d.circle(rad).cx(x).cy(y).fill({opacity: 0}).stroke({color: "#f30", width: rad/80})
+      #d.circle(rad).cx(x).cy(y).fill({opacity: 0}).stroke({color: "#f30", width: rad/80})
+      d.circle(rad).cx(x).cy(y).fill({opacity: 0}).stroke({color: "#f30", width: height/120})
       rad *= 0.97
   else
     #opaque disks
@@ -108,7 +116,7 @@ background = () ->
 mountains = () ->
   x = 0
   y = height
-  dy_crazy = rando(0.5,3) #bigger is crazier
+  dy_crazy = rando(0.25,3) #bigger is crazier
   stroke_width = Math.floor(width/rando(50,1200))
   if(stroke_width < 1)
     stroke_width = 1
@@ -129,7 +137,7 @@ mountains = () ->
     x = 0
     #move up...
     #y -= width/40+Math.random(width/30)
-    y -= rando(height/10,height/5)
+    y -= rando(height/20,height/5)
 
     #get skinnier
     stroke_width = stroke_width*0.85
@@ -140,9 +148,11 @@ mountains = () ->
 #do it!
 #drawLines()
 background()
-last_y = mountains()
-sun(last_y)
+sun(mountains()) #mountains passes the last Y coord into the sun so we can keep it above them
 
+
+#drawLines()
+#sun(height/3)
 
 #now do it every 5 seconds...
 #setInterval draw, 5000
