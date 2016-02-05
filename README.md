@@ -15,6 +15,11 @@ Install the gems:
 ```bash
 $ bundle install
 ```
+Start compiling the JS (poor man's asset pipeline)
+Concatenate all the *.coffee files into public/application.js every 5 seconds
+``bash
+watch -n5 "cat views/*.coffee | coffee -wscb > public/application.js"
+```
 
 Start the app:
 ```bash

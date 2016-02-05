@@ -1,9 +1,21 @@
 #require 'rubygems'
 require 'sinatra'
 require 'slim'
-require 'coffee-script'
+require 'barista' #register Barista::Integration::Sinatra
+
+#require 'coffee-script'
 require 'v8'
 #require 'tilt' (for other templating engines)
+
+register Barista::Integration::Sinatra
+
+root = "."
+Barista.app_root = root
+Barista.root     = File.join(root, 'views')
+Barista.setup_defaults
+barista_config = root + '/barista_config.rb'
+require barista_config if File.exist?(barista_config)
+
 
 #set our views path
 set :views, File.dirname(__FILE__) + '/views'
@@ -17,10 +29,10 @@ get '/' do
 end
 
 #render our application.js file from our CoffeeScript
-get '/application.js' do
-  content_type "text/javascript"
-  coffee :application
-end
+#get '/application.js' do
+#  content_type "text/javascript"
+#  coffee :application
+#end
 
 #nice wrapper to allow functions to respond to get or post
 def self.get_or_post(url,&block)
