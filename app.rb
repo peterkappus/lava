@@ -1,12 +1,14 @@
 #require 'rubygems'
 require 'sinatra'
 require 'slim'
-require 'barista' #register Barista::Integration::Sinatra
+#require 'barista' #register Barista::Integration::Sinatra
 
 #require 'coffee-script'
 require 'v8'
 #require 'tilt' (for other templating engines)
 
+=begin
+#not using barista afterall
 register Barista::Integration::Sinatra
 
 root = "."
@@ -15,7 +17,7 @@ Barista.root     = File.join(root, 'views')
 Barista.setup_defaults
 barista_config = root + '/barista_config.rb'
 require barista_config if File.exist?(barista_config)
-
+=end
 
 #set our views path
 set :views, File.dirname(__FILE__) + '/views'
