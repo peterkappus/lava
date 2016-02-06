@@ -1,20 +1,31 @@
 
 
-background("#993")
-
-gap = width/10
+#tufte yellow
+background("#333")
 color= "#800"
 
-x = y = gap
-brick_height = gap
-brick_width = brick_height*2
+gap = width/200
+rows = 12
 
-while(y < height)
+x = y = gap
+brick_height = ((height-gap)/rows)-gap
+brick_width_unit = gap*10
+brick_width = Math.round(rando(1,5)) * brick_width_unit
+
+while(y < height-brick_height)
+  #right hand margin
   if(x + brick_width > width-gap)
     brick_width = width-x-gap
-  d.rect(brick_width,brick_height).fill(color).x(x).y(y)
+
+  #draw
+  d.rect().width(brick_width).height(brick_height).fill(randColor()).x(x).y(y)
+
+  #advance...
   x += brick_width + gap
-  brick_width = rando(gap,gap*10)
+  #randomize brick width
+  brick_width = Math.round(rando(1,8)) * brick_width_unit
+
+  #wrap
   if(x >= width)
     x = gap
     y += gap + brick_height
