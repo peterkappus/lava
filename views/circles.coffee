@@ -1,4 +1,5 @@
 
+#a jumble/jungle of random circles
 
 circ_jumble = () ->
   for n in [1..50]

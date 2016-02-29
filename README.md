@@ -3,6 +3,10 @@
 
 A simple app for exploring shapes, colors, and patterns and saving them to SVGs (and JPGs)
 
+## Architecture
+Uses a simple Sinatra app to save the SVG and convert to a JPG (using rsvg-convert). Uses coffee script and SVG.js to render pretty things on the client side. All the coffee scripts get compiled into a single script (see cheapo concatenation scheme below). Generally, coffee scripts include a single function which gets called to render "the thing" for that script. Just comment the call to this function out if you don't want it to run.
+
+
 ## Requirements/Installation
 
 Install rsvg-convert for converting SVG to JPGs. The easiest way to install on a Mac is with [Homebrew](http://brew.sh/):
@@ -15,6 +19,7 @@ Install the gems:
 ```bash
 $ bundle install
 ```
+
 Start compiling the JS (poor man's asset pipeline)
 Concatenate all the *.coffee files into public/application.js every 5 seconds
 ``bash

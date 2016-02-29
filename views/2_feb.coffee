@@ -5,7 +5,6 @@ y = height/2
 stroke_width = 10
 offset = stroke_width
 
-background("#110")
 
 concentric = (x,y,rad) ->
   while(rad > 10 )
@@ -15,5 +14,6 @@ concentric = (x,y,rad) ->
     #rad -= stroke_width
 
 # DO IT!
+#background("#110")
 #concentric x-offset,y,width*0.9
 #concentric x+offset,y,width*0.9
