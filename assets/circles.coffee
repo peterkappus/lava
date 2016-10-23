@@ -1,9 +1,20 @@
 
 #a jumble/jungle of random circles
 
+#grab a copy of our "sol" object
+sol = new window.Sol()
+
+#import sol values into this script
+height = sol.height
+width = sol.width
+d = sol.canvas
+rando = sol.rando
+foreground_color = sol.foreground_color
+
+
 circ_jumble = () ->
   for n in [1..50]
-    rad = rando(width/50,width*0.7)
+    rad = rando(width/50,width/20)
     x = rando(10,width)
     y = rando(10,height)
     #x = width/2
@@ -15,7 +26,7 @@ circ_jumble = () ->
     #color = new SVG.Color({r: shade,  g: shade, b: shade})
 
     #rand color
-    color = randColor()
+    color = sol.randColor()
 
     d.circle(rad).cx(x).cy(y).fill({opacity: 0}).stroke({color: color, width: stroke_width})
 

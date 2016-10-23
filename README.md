@@ -12,13 +12,16 @@ Uses a simple Sinatra app to save the SVG and convert to a JPG (using rsvg-conve
 Install rsvg-convert for converting SVG to JPGs. The easiest way to install on a Mac is with [Homebrew](http://brew.sh/):
 
 ```bash
-$ brew install rsvg-convert
-```
+brew install watch
+#brew install coffee
+brew install librsvg
+brew install v8
+gem install therubyracer
+gem install libv8 -v '3.16.14.11' -- --with-system-v8
+bundle install
 
-Install the gems:
-```bash
-$ bundle install
 ```
+NOTE: if you have issues with the above, you may have to `gem uninstall v8`
 
 Start compiling the JS (poor man's asset pipeline)
 Concatenate all the *.coffee files into public/application.js every 5 seconds
@@ -28,7 +31,7 @@ watch -n5 "cat views/*.coffee | coffee -wscb > public/application.js"
 
 Start the app:
 ```bash
-$ shotgun app.rb
+$ bundle exec shotgun app.rb
 ```
 
 No idea how to run this on a server... anybody want to help?

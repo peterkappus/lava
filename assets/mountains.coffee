@@ -1,4 +1,15 @@
 #pass an approximate Y where you'd like the sun
+
+#grab a copy of our "sol" object
+sol = new window.Sol()
+
+#import sol values into this script
+height = sol.height
+width = sol.width
+d = sol.canvas
+rando = sol.rando
+foreground_color = sol.foreground_color
+
 sun = (y) ->
   #rad = rando(width/8,width/3)
   rad = rando(y/3,y*2) #make radius fit the distance from y to the top
@@ -68,7 +79,7 @@ cloud = (x,y,rad) ->
 mountain_scene = () ->
   #do it!
   #drawLines()
-  background()
+  sol.background()
   #for i in [1..10]
   #  cloud(Math.random()*width,Math.random()*height,width/(3+(Math.random()*20)))
   sun(vert_mountains()) #mountains passes the last Y coord into the sun so we can keep it above them
@@ -82,8 +93,5 @@ mountain_scene = () ->
 
 # DO IT!
 #mountain_scene()
-
-
-
 #now do it every 5 seconds...
-#setInterval draw, 5000
+#setInterval mountain_scene, 8000

@@ -1,6 +1,16 @@
 #require 'rubygems'
 require 'sinatra'
 require 'slim'
+require 'sinatra/asset_pipeline'
+register Sinatra::AssetPipeline
+
+
+#for asset management (concatenation, compression, etc)
+#register Jammit
+#Jammit.load_configuration("assets.yml")
+
+
+
 #require 'barista' #register Barista::Integration::Sinatra
 
 #require 'coffee-script'
@@ -58,5 +68,5 @@ get_or_post '/save_svg' do
 		#{}`#{rsvg} blah blah`
 	#not sure why
   #set width (-w) to 10,000px for printable image :)
-	`rsvg-convert #{FOLDER}/#{file_name}.svg -w 1200 -o #{FOLDER}/#{file_name}.jpg`
+	`rsvg-convert #{FOLDER}/#{file_name}.svg -w 5200 -o #{FOLDER}/#{file_name}.jpg`
 end
