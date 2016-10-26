@@ -1,7 +1,6 @@
 #radial dots
 
 radial_dots = () ->
-  sol = new window.Sol
   orig_x = sol.width/2
   orig_y = sol.height/2
   x = y = deg = 0

@@ -1,8 +1,7 @@
 
 
 weave = () ->
-  #shove this in the global context so we can use it outside of the anonymous function wrapper...
-  sol = new window.Sol
+  #use existing window.sol object
   width = sol.width
   height = sol.height
   rando = sol.rando

@@ -1,5 +1,5 @@
 
-class window.Sol
+class Sol
   constructor: ->
     @width = window.innerWidth
     @height = window.innerHeight
@@ -10,7 +10,6 @@ class window.Sol
 
   rando: (min,max) ->
     return(Math.random() * (max - min) + min)
-
 
   vline: (x,thickness) ->
       @canvas.rect(thickness,@height).x(x).fill(@foreground_color)
@@ -27,7 +26,6 @@ class window.Sol
     @canvas.rect(@width,@height).fill(color)
 
 window.save_svg = () ->
-  #alert "Saving..."
   console.log "Saving..."
   #$.post('/save_svg',{data: $('#svg').html()})
   $.post('/save_svg',{data: $('#svg').html()}, () -> document.title = "Saved!")
@@ -36,6 +34,15 @@ window.save_svg = () ->
 $('body').keypress (event) ->
   if(event.which == 13)
     window.save_svg()
+
+#set these globally for our other scripts to use locally
+window.sol = new Sol()
+window.rando = sol.rando
+window.randColor = sol.randColor
+window.width = sol.width
+window.height = sol.height
+window.d = sol.canvas
+window.foreground_color = sol.foreground_color
 
 #save on click
 #$('body').mousedown (event) ->

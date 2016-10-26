@@ -1,8 +1,7 @@
 
 #a jumble/jungle of random circles
 
-#grab a copy of our "sol" object
-sol = new window.Sol()
+#singleton sol is set in window object by sol class file
 
 #import sol values into this script
 height = sol.height

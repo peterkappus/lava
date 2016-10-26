@@ -1,15 +1,5 @@
 #pass an approximate Y where you'd like the sun
 
-#grab a copy of our "sol" object
-sol = new window.Sol()
-
-#import sol values into this script
-height = sol.height
-width = sol.width
-d = sol.canvas
-rando = sol.rando
-foreground_color = sol.foreground_color
-
 sun = (y) ->
   #rad = rando(width/8,width/3)
   rad = rando(y/3,y*2) #make radius fit the distance from y to the top

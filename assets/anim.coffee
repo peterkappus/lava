@@ -2,14 +2,6 @@ foreground_color = "#fff"
 show_color = false
 background_color = "#fc0"
 
-sol = new window.Sol()
-rando = sol.rando
-randColor = sol.randColor
-width = sol.width
-height = sol.height
-d = sol.canvas
-
-
 circle = (x,y,rad,stroke_width) ->
   d.circle(rad).cx(x).cy(y).fill({opacity: .6, color: background_color}).stroke({color: foreground_color, width: stroke_width})
   #d.circle(rad).cx(x).cy(y).fill({opacity: 1, color: background_color}).stroke({color: foreground_color, width: stroke_width})
@@ -60,9 +52,8 @@ migrate = (time = time) ->
     circs[circ].animate(time).attr('cx',target_x).attr('cy',target_y).fill({opacity: .6, color: target_color})
 
 
-#background("#333")
-make()
-migrate(time)
+#make()
+#migrate(time)
 #now do it every X seconds
 #TODO: Fix hold_time... not working right now
-int = setInterval migrate, hold_time, time
+#int = setInterval migrate, hold_time, time
