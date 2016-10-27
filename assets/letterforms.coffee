@@ -9,6 +9,9 @@ letter_string = "PSLK"
 #"A"
 first_letter_code = 65;
 
+foreground_color = randColor()
+background_color = randColor()
+
 if letter_string == ""
   how_many = rando(3,10)
   for i in [0..how_many]
@@ -23,15 +26,15 @@ font_size = width
 steps = 500 #steps to move from A to B
 window.letters = []
 
-sol.background("#000")
-foreground_color = "#fff"
+sol.background(background_color)
+foreground_color = foreground_color
 
 class window.LetterForm
   constructor: (letter) ->
     #instance var to hold our SVG element
-    @color = "#fff"
+    @color = foreground_color
     #make half of them black.
-    @color = "#000" if Math.random() < 0.5
+    @color = background_color if Math.random() < 0.5
 
     @glyph = sol.canvas
     .text(letter)
