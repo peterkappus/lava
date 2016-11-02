@@ -4,7 +4,7 @@
 
 
 #make this blank if you want random letters...
-letter_string = "PSLK"
+letter_string = "PETER SAN LOUIE KAPPUS"
 
 #"A"
 first_letter_code = 65;
@@ -41,7 +41,7 @@ class window.LetterForm
     .font({
       family: font_face
       , weight: 800
-      ,size: rando(width/5,width*1.2)
+      ,size: rando(width/10,width*1.2)
       , anchor: 'left'})
     .cx(width/2)
     .cy(height/2)
