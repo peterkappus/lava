@@ -1,16 +1,37 @@
 #radial dots
 
 class window.RadialDots
-###
   constructor:() ->
-    orig_x = sol.width/2
-    orig_y = sol.height/2
-    x = y = deg = 0
-    radius = sol.width/80
-    distance = radius
+    sol.background("#fff")
 
-    while (x < sol.width-radius)
+    orig_x = x = sol.width/2
+    orig_y = y = sol.height/2
+    distance = deg =0
+    radius = sol.width/200
+    how_many_this_level = 0
+    y = orig_y
+
+    inner_color = sol.randColor()
+    outer_color = sol.randColor()
+
+    margin = sol.width/50
+    while (orig_x - distance - radius*2 > margin)
+      #color = new SVG.Color(inner_color).morph(outer_color).at(distance / (orig_x - margin))
       color = sol.randColor()
+      radius += sol.width/1200
+      distance += radius*1.3
+      deg = 0
+      how_many_this_level += 5
+
+      while(deg < 2*Math.PI)
+        #color = sol.randColor()
+        x = orig_x + Math.sin(deg)*distance
+        y = orig_y + Math.cos(deg)*distance
+
+        sol.canvas.circle(radius).x(x-radius/2).y(y-radius/2).fill({color:color})
+        deg += (2*Math.PI)/how_many_this_level
+
+###
       x = orig_x + Math.sin(deg)*distance
       y = orig_y + Math.cos(deg)*distance
 
