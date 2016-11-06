@@ -9,10 +9,10 @@ window.init = () ->
   # TODO: resize svg when the window resizes
   # Have to make a new SOL object to initialise the SVG canvas...
   #not working... can't find "sol" :(
-  #window.sol = new Sol()
-
+  #sol.canvas
   #new Weave()
-  new LetterForms()
+  #new LetterForms()
+  new RadialDots()
   #new Mountains()
 
 init()

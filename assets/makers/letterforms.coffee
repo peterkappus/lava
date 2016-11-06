@@ -5,7 +5,6 @@ font_face = ""
 background_color = ""
 font_size = anim_time = steps = 0
 
-
 class window.LetterForms
   #NOTE: I can't just use the built in animation methods because of some dumb bug with SVG Text which makes the letters jump vertically everytime they start moving....
   #So I'm reverting to a DIY approach...
@@ -33,7 +32,7 @@ class window.LetterForms
     background_color = randColor()
 
     if letter_string == ""
-      how_many = rando(3,10)
+      how_many = rando(3,15)
       for i in [0..how_many]
         letter_string += String.fromCharCode(Math.round((Math.random()*26))+first_letter_code);
 

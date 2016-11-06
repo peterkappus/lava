@@ -1,5 +1,5 @@
 
-class Sol
+class window.Sol
   constructor: ->
     @width = window.innerWidth
     @height = window.innerHeight

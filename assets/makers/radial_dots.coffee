@@ -1,6 +1,7 @@
 #radial dots
 
 class window.RadialDots
+###
   constructor:() ->
     orig_x = sol.width/2
     orig_y = sol.height/2
@@ -19,3 +20,4 @@ class window.RadialDots
       deg += (2*Math.PI)/40
       radius *= 1.00004
       distance *= 1.001
+###
