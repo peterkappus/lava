@@ -5,7 +5,27 @@ A simple app for exploring shapes, colors, and patterns and saving them to SVGs 
 
 ## Architecture
 Uses a simple Sinatra app to save the SVG and convert to a JPG (using rsvg-convert). Uses coffee script and SVG.js to render pretty things on the client side. All the coffee scripts get compiled and served via an asset pipeline.
-The "Sol" class (named for Sol Lewitt) contains basic methods for drawing, and global vars for colors, etc. (to be continued).
+The "Sol" class (named for Sol Lewitt) contains basic methods for drawing, and global vars for colours, etc. (to be continued).
+
+### Making your own "art makers"
+Each art maker is a coffeescript file in the `assets/makers` folder. Each one is a unique class.
+Create a new coffeescript file in that folder, create a class, give it a constructor which uses the sol.canvas object to do some drawing...
+
+
+```
+class window.MyNewArtMaker
+  constructor:() ->
+    sol.background("#fff")
+
+    sol.canvas.circle...whatever.
+```
+
+Now update the `main.coffee` file to call your constructor:
+
+```
+window.init = () ->
+  new MyNewArtMaker()
+```
 
 
 ## Requirements/Installation

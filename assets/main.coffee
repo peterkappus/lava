@@ -11,9 +11,9 @@ window.init = () ->
   #not working... can't find "sol" :(
   #sol.canvas
   #new Weave()
-  new LetterForms()
+  #new LetterForms()
   #new RadialDots()
   #new Mountains()
-  #new Fog()
-  
+  new Fog()
+
 init()

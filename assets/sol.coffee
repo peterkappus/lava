@@ -11,6 +11,16 @@ class window.Sol
   rando: (min,max) ->
     return(Math.random() * (max - min) + min)
 
+  rando_within: (current,min_amount,max_amount,lower_bound,upper_bound) ->
+    #keep us in range...
+    if(current + max_amount > upper_bound)
+      max_amount = upper_bound - current
+    if(current + min_amount < lower_bound)
+      min_amount = -(current - lower_bound)
+    #now do it
+    #console.log("current" + current + " min: " + min_amount + " max: " + max_amount)
+    return(current + rando(min_amount,max_amount))
+
   vline: (x,thickness) ->
       @canvas.rect(thickness,@height).x(x).fill(@foreground_color)
 
