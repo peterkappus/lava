@@ -15,5 +15,5 @@ window.init = () ->
   #new RadialDots()
   #new Mountains()
   #new Fog()
-
+  
 init()

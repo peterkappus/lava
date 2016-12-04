@@ -57,6 +57,7 @@ get_or_post '/save_svg' do
 	file_name = Time.now.to_i
 
 	FOLDER = "works" #okay to change this
+  IMG_WIDTH = 1200
 
   #need to add this header....
   #<?xml version="1.0" encoding="UTF-8" standalone="no" ?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
@@ -68,5 +69,5 @@ get_or_post '/save_svg' do
 		#{}`#{rsvg} blah blah`
 	#not sure why
   #set width (-w) to 10,000px for printable image :)
-	`rsvg-convert #{FOLDER}/#{file_name}.svg -w 5200 -o #{FOLDER}/#{file_name}.jpg`
+	`rsvg-convert #{FOLDER}/#{file_name}.svg -w #{IMG_WIDTH} -o #{FOLDER}/#{file_name}.jpg`
 end

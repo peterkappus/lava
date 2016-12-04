@@ -1,5 +1,5 @@
 
-class Sol
+class window.Sol
   constructor: ->
     @width = window.innerWidth
     @height = window.innerHeight
@@ -43,6 +43,7 @@ window.width = sol.width
 window.height = sol.height
 window.d = sol.canvas
 window.foreground_color = sol.foreground_color
+
 
 #save on click
 #$('body').mousedown (event) ->
