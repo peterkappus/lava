@@ -14,6 +14,8 @@ window.init = () ->
   #new LetterForms()
   #new RadialDots()
   #new Mountains()
-  new Fog()
+  #new Fog()
+  #new Stars()
+  new Lotus()
 
 init()
